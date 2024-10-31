@@ -11,3 +11,18 @@ type DetailHeroData = GeneralHeroData & {
   attack_capability: number,
   role_levels: number[],
 }
+
+type HeroCounterData = {
+  badAgainst: {
+    mainHeroes: string[],
+    othersHeroes: string[]
+  },
+  goodAgainst: {
+    mainHeroes: string[],
+    othersHeroes: string[]
+  },
+  worksWellWith: {
+    mainHeroes: string[],
+    othersHeroes: string[]
+  }
+}

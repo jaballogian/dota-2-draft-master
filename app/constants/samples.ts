@@ -1,4 +1,5 @@
 // NOTE: SOURCE: https://dota2.fandom.com/api.php?action=query&format=json&prop=revisions&titles=Sven/Counters&rvprop=content
+// NOTE: UNUSED VARIABLE
 export const sampleWikiHeroCounterData = {
   'batchcomplete': '',
   'warnings': {
@@ -27,7 +28,70 @@ export const sampleWikiHeroCounterData = {
   }
 }
 
-export const detailedHeroData = [
+export const sampleDetailHeroData = {
+  'id': 102,
+  'name': 'npc_dota_hero_abaddon',
+  'name_loc': 'Abaddon',
+  'name_english_loc': 'Abaddon',
+  'primary_attr': 3,
+  'complexity': 1,
+  'attack_capability': 1,
+  'role_levels': [
+    1,
+    2,
+    0,
+    0,
+    0,
+    2,
+    0,
+    0,
+    0
+  ]
+}
+
+export const sampleGeneralHeroDataList = [
+  {
+    'id': 102,
+    'name': 'npc_dota_hero_abaddon',
+    'name_loc': 'Abaddon',
+    'name_english_loc': 'Abaddon',
+    'primary_attr': 3,
+    'complexity': 1
+  },
+  {
+    'id': 68,
+    'name': 'npc_dota_hero_ancient_apparition',
+    'name_loc': 'Ancient Apparition',
+    'name_english_loc': 'Ancient Apparition',
+    'primary_attr': 2,
+    'complexity': 2
+  },
+  {
+    'id': 1,
+    'name': 'npc_dota_hero_antimage',
+    'name_loc': 'Anti-Mage',
+    'name_english_loc': 'Anti-Mage',
+    'primary_attr': 1,
+    'complexity': 1
+  },
+  {
+    'id': 90,
+    'name': 'npc_dota_hero_keeper_of_the_light',
+    'name_loc': 'Keeper of the Light',
+    'name_english_loc': 'Keeper of the Light',
+    'primary_attr': 2,
+    'complexity': 2
+  },
+  {
+    'id': 53,
+    'name': 'npc_dota_hero_furion',
+    'name_loc': 'Nature\'s Prophet',
+    'name_english_loc': 'Nature\'s Prophet',
+    'primary_attr': 2,
+    'complexity': 2}
+]
+
+export const sampleDetailHeroDataList = [
   {
     'id': 102,
     'name': 'npc_dota_hero_abaddon',
