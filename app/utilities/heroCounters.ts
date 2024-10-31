@@ -15,9 +15,9 @@ const extractSections = (content: string): Record<string, {
   }> = {}
 
   // Regex patterns to capture each section and "Others" subsection separately
-  const badAgainstMatch = content.match(/== Bad against\.\.\. ==([\s\S]*?)(=== Others ===([\s\S]*?))(==|$)/)
-  const goodAgainstMatch = content.match(/== Good against\.\.\. ==([\s\S]*?)(=== Others ===([\s\S]*?))(==|$)/)
-  const worksWellWithMatch = content.match(/== Works well with\.\.\. ==([\s\S]*?)(=== Others ===([\s\S]*?))(==|$)/)
+  const badAgainstMatch = content.match(/==?\s*Bad against\.\.\.\s*==?([\s\S]*?)(===?\s*Others\s*===?([\s\S]*?))(==|$)/i)
+  const goodAgainstMatch = content.match(/==?\s*Good against\.\.\.\s*==?([\s\S]*?)(===?\s*Others\s*===?([\s\S]*?))(==|$)/i)
+  const worksWellWithMatch = content.match(/==?\s*Works well with\.\.\.\s*==?([\s\S]*?)(===?\s*Others\s*===?([\s\S]*?))(==|$)/i)
 
   // Helper functions for hero name extraction
   const extractMainHeroes = (text: string): string[] => {
