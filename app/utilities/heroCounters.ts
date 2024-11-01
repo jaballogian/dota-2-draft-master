@@ -5,14 +5,14 @@ import { initialCounterHero } from '../constants/heroes'
 const extractSections = (content: string): CounterHero => {
   const sections: CounterHero = { ...initialCounterHero }
 
-  // Regex patterns to capture each section and "Others" subsection separately
-  const badAgainstMatch = content.match(/==?\s*Bad against\.\.\.\s*==?([\s\S]*?)(===?\s*Others\s*===?([\s\S]*?))(==|$)/i)
-  const goodAgainstMatch = content.match(/==?\s*Good against\.\.\.\s*==?([\s\S]*?)(===?\s*Others\s*===?([\s\S]*?))(==|$)/i)
-  const worksWellWithMatch = content.match(/==?\s*Works well with\.\.\.\s*==?([\s\S]*?)(===?\s*Others\s*===?([\s\S]*?))(==|$)/i)
+  // Adjusted regex patterns with stricter grouping for optional "Others" section
+  const badAgainstMatch = content.match(/==?\s*Bad against\.\.\.\s*==?\s*([\s\S]*?)(?:===?\s*Others\s*===?\s*([\s\S]*?))?(?===|$)/i)
+  const goodAgainstMatch = content.match(/==?\s*Good against\.\.\.\s*==?\s*([\s\S]*?)(?:===?\s*Others\s*===?\s*([\s\S]*?))?(?===|$)/i)
+  const worksWellWithMatch = content.match(/==?\s*Works well with\.\.\.\s*==?\s*([\s\S]*?)(?:===?\s*Others\s*===?\s*([\s\S]*?))?(?===|$)/i)
 
   // Helper functions for hero name extraction
   const extractMainHeroes = (text: string): string[] => {
-    const matches = [...text.matchAll(/{{hero label\|([^|]+)\|border=[^}]+}}/g)]
+    const matches = [...text.matchAll(/{{hero label\|([^|]+)\|border=[^}]+}}/gi)]
     return matches.map(match => match[1])
   }
 
@@ -21,24 +21,25 @@ const extractSections = (content: string): CounterHero => {
     return matches.map(match => match[1])
   }
 
+  // Populate each section only if there's a match
   if (badAgainstMatch) {
     sections['badAgainst'] = {
-      mainHeroes: extractMainHeroes(badAgainstMatch[1]),
-      othersHeroes: extractOthersHeroes(badAgainstMatch[3] || '')
+      mainHeroes: extractMainHeroes(badAgainstMatch[1] || ''),
+      othersHeroes: badAgainstMatch[2] ? extractOthersHeroes(badAgainstMatch[2]) : []
     }
   }
 
   if (goodAgainstMatch) {
     sections['goodAgainst'] = {
-      mainHeroes: extractMainHeroes(goodAgainstMatch[1]),
-      othersHeroes: extractOthersHeroes(goodAgainstMatch[3] || '')
+      mainHeroes: extractMainHeroes(goodAgainstMatch[1] || ''),
+      othersHeroes: goodAgainstMatch[2] ? extractOthersHeroes(goodAgainstMatch[2]) : []
     }
   }
 
   if (worksWellWithMatch) {
     sections['worksWellWith'] = {
-      mainHeroes: extractMainHeroes(worksWellWithMatch[1]),
-      othersHeroes: extractOthersHeroes(worksWellWithMatch[3] || '')
+      mainHeroes: extractMainHeroes(worksWellWithMatch[1] || ''),
+      othersHeroes: worksWellWithMatch[2] ? extractOthersHeroes(worksWellWithMatch[2]) : []
     }
   }
 
