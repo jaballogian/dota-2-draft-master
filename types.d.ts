@@ -1,4 +1,4 @@
-type GeneralHeroData = {
+type GeneralHero = {
   id: number,
   name: string,
   name_loc: string,
@@ -7,12 +7,12 @@ type GeneralHeroData = {
   complexity: number
 }
 
-type DetailHeroData = GeneralHeroData & {
+type DetailHero = GeneralHero & {
   attack_capability: number,
   role_levels: number[],
 }
 
-type HeroCounterData = {
+type CounterHero = {
   badAgainst: {
     mainHeroes: string[],
     othersHeroes: string[]
@@ -26,3 +26,5 @@ type HeroCounterData = {
     othersHeroes: string[]
   }
 }
+
+type CompleteHero = DetailHero & CounterHero

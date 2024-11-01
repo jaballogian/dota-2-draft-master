@@ -1,36 +1,41 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import { getHeroCounters } from './utilities/heroCounters'
-import { getAllGeneralHeroData, getDetailHeroData } from '@/app/utilities/heroes'
-import { sampleDetailHeroData, sampleGeneralHeroDataList } from '@/app/constants/samples'
+import { getCounterHeroes } from './utilities/heroCounters'
+import { getAllGeneralHero, getDetailHero } from '@/app/utilities/heroes'
+import { sampleDetailHero, sampleGeneralHeroList } from '@/app/constants/samples'
+import { jsonToCsv } from './utilities/jsonToCsv'
 
 const App: React.FC = () => {
-  const [ heroes, setHeroes ] = useState<DetailHeroData[]>([])
+  const [ heroes, setHeroes ] = useState<CompleteHero[]>([])
 
   // GET GENERAL, DETAIL, AND COUNTER DATA FOR ALL HEROES
   useEffect(() => {
     const getData = async () => {
       // TO DO: UNCOMMENT THIS LINE
-      // const allGeneralHeroData: GeneralHeroData[] = await getAllGeneralHeroData()
-      const allGeneralHeroData: GeneralHeroData[] = sampleGeneralHeroDataList
+      const allGeneralHero: GeneralHero[] = await getAllGeneralHero()
+      // const allGeneralHero: GeneralHero[] = sampleGeneralHeroList
 
-      if (allGeneralHeroData.length > 0) {
-        const allHeroes: DetailHeroData[] = await Promise.all(allGeneralHeroData.map(async (hero) => {
+      if (allGeneralHero.length > 0) {
+        const allHeroes: CompleteHero[] = await Promise.all(allGeneralHero.map(async (hero) => {
           // TO DO: UNCOMMENT THIS LINE
-          const detailHerodata: DetailHeroData = await getDetailHeroData(hero.id)
-          // const detailHerodata: DetailHeroData = sampleDetailHeroData
+          const detailHero: DetailHero = await getDetailHero(hero.id)
+          // const DetailHero: DetailHero = sampleDetailHero
 
-          const heroCounter = await getHeroCounters(detailHerodata?.name_loc)
+          const counterHeroes: CounterHero = await getCounterHeroes(detailHero?.name_loc)
+          console.log({ counterHeroes })
 
           return {
             ...hero,
-            attack_capability: detailHerodata?.attack_capability,
-            role_levels: detailHerodata?.role_levels,
-            counter: heroCounter
+            attack_capability: detailHero?.attack_capability,
+            role_levels: detailHero?.role_levels,
+            counter: counterHeroes
           }
         }))
 
-        if (allHeroes.length > 0) setHeroes(allHeroes)
+        if (allHeroes.length > 0) {
+          setHeroes(allHeroes)
+          jsonToCsv(allHeroes)
+        }
       }
     }
 

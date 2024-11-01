@@ -1,6 +1,6 @@
 // NOTE: SOURCE: https://dota2.fandom.com/api.php?action=query&format=json&prop=revisions&titles=Sven/Counters&rvprop=content
 // NOTE: UNUSED VARIABLE
-export const sampleWikiHeroCounterData = {
+export const sampleWikiCounterHeroData = {
   'batchcomplete': '',
   'warnings': {
     'main': {
@@ -28,7 +28,7 @@ export const sampleWikiHeroCounterData = {
   }
 }
 
-export const sampleDetailHeroData = {
+export const sampleDetailHero = {
   'id': 102,
   'name': 'npc_dota_hero_abaddon',
   'name_loc': 'Abaddon',
@@ -49,7 +49,7 @@ export const sampleDetailHeroData = {
   ]
 }
 
-export const sampleGeneralHeroDataList = [
+export const sampleGeneralHeroList = [
   {
     'id': 102,
     'name': 'npc_dota_hero_abaddon',
@@ -91,7 +91,7 @@ export const sampleGeneralHeroDataList = [
     'complexity': 2}
 ]
 
-export const sampleDetailHeroDataList = [
+export const sampleDetailHeroList = [
   {
     'id': 102,
     'name': 'npc_dota_hero_abaddon',

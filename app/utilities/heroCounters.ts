@@ -1,18 +1,9 @@
 import axiosFandom from '@/app/apis/axiosFandom'
 import queryString from 'query-string'
+import { initialCounterHero } from '../constants/heroes'
 
-const extractSections = (content: string): Record<string, { 
-  // mainContent: string; 
-  // othersContent: string; 
-  mainHeroes: string[]; 
-  othersHeroes: string[] 
-}> => {
-  const sections: Record<string, { 
-    // mainContent: string; 
-    // othersContent: string; 
-    mainHeroes: string[]; 
-    othersHeroes: string[] 
-  }> = {}
+const extractSections = (content: string): CounterHero => {
+  const sections: CounterHero = { ...initialCounterHero }
 
   // Regex patterns to capture each section and "Others" subsection separately
   const badAgainstMatch = content.match(/==?\s*Bad against\.\.\.\s*==?([\s\S]*?)(===?\s*Others\s*===?([\s\S]*?))(==|$)/i)
@@ -32,8 +23,6 @@ const extractSections = (content: string): Record<string, {
 
   if (badAgainstMatch) {
     sections['badAgainst'] = {
-      // mainContent: badAgainstMatch[1].trim(),
-      // othersContent: badAgainstMatch[3]?.trim() || '',
       mainHeroes: extractMainHeroes(badAgainstMatch[1]),
       othersHeroes: extractOthersHeroes(badAgainstMatch[3] || '')
     }
@@ -41,8 +30,6 @@ const extractSections = (content: string): Record<string, {
 
   if (goodAgainstMatch) {
     sections['goodAgainst'] = {
-      // mainContent: goodAgainstMatch[1].trim(),
-      // othersContent: goodAgainstMatch[3]?.trim() || '',
       mainHeroes: extractMainHeroes(goodAgainstMatch[1]),
       othersHeroes: extractOthersHeroes(goodAgainstMatch[3] || '')
     }
@@ -50,8 +37,6 @@ const extractSections = (content: string): Record<string, {
 
   if (worksWellWithMatch) {
     sections['worksWellWith'] = {
-      // mainContent: worksWellWithMatch[1].trim(),
-      // othersContent: worksWellWithMatch[3]?.trim() || '',
       mainHeroes: extractMainHeroes(worksWellWithMatch[1]),
       othersHeroes: extractOthersHeroes(worksWellWithMatch[3] || '')
     }
@@ -60,7 +45,7 @@ const extractSections = (content: string): Record<string, {
   return sections
 }
 
-export const getHeroCounters = async (heroName: string) => {
+export const getCounterHeroes = async (heroName: string): Promise<CounterHero> => {
   try {
     const result = await axiosFandom.get(`?${queryString.stringify({
       action: 'query',
@@ -77,6 +62,7 @@ export const getHeroCounters = async (heroName: string) => {
 
     return extractedSections
   } catch (error) {
-    console.error('Error fetching data:', error)
+    console.error(`Error fetching data for ${heroName}`, error)
+    return { ...initialCounterHero }
   }
 }
