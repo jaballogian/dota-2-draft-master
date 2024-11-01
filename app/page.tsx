@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react'
 import { getCounterHeroes } from './utilities/heroCounters'
 import { getAllGeneralHero, getDetailHero } from '@/app/utilities/heroes'
-import { sampleDetailHero, sampleGeneralHeroList } from '@/app/constants/samples'
 import { jsonToCsv } from './utilities/jsonToCsv'
 
 const App: React.FC = () => {
@@ -11,15 +10,11 @@ const App: React.FC = () => {
   // GET GENERAL, DETAIL, AND COUNTER DATA FOR ALL HEROES
   useEffect(() => {
     const getData = async () => {
-      // TO DO: UNCOMMENT THIS LINE
       const allGeneralHero: GeneralHero[] = await getAllGeneralHero()
-      // const allGeneralHero: GeneralHero[] = sampleGeneralHeroList
 
       if (allGeneralHero.length > 0) {
         const allHeroes: CompleteHero[] = await Promise.all(allGeneralHero.map(async (hero) => {
-          // TO DO: UNCOMMENT THIS LINE
           const detailHero: DetailHero = await getDetailHero(hero.id)
-          // const DetailHero: DetailHero = sampleDetailHero
 
           const counterHeroes: CounterHero = await getCounterHeroes(detailHero?.name_loc)
           console.log({ counterHeroes })
