@@ -4,7 +4,8 @@ type GeneralHero = {
   name_loc: string,
   name_english_loc: string,
   primary_attr: number,
-  complexity: number
+  complexity: number,
+  thumbnail: string,
 }
 
 type DetailHero = GeneralHero & {

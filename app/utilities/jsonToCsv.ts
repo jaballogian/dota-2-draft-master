@@ -7,6 +7,7 @@ const flattenJson = (data: any[]): any[] => {
       name_english_loc: item.name_english_loc,
       primary_attr: item.primary_attr,
       complexity: item.complexity,
+      thumbnail: item.thumbnail,
       attack_capability: item.attack_capability,
       role_levels: item.role_levels.join(','),
       bad_against_main_heroes: item.counter.badAgainst.mainHeroes.join(','),
