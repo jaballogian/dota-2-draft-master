@@ -24,9 +24,9 @@ export const jsonToCsv = (data: any[]) => {
   const flatData = flattenJson(data)
   const headers = Object.keys(flatData[0])
   const csvRows = [
-    headers.join(','),
+    headers.join(';'),
     ...flatData.map(row => 
-      headers.map(field => JSON.stringify(row[field], null, 0)).join(',')
+      headers.map(field => JSON.stringify(row[field], null, 0)).join(';')
     )
   ]
 
@@ -39,6 +39,4 @@ export const jsonToCsv = (data: any[]) => {
   link.click()
 
   URL.revokeObjectURL(url)
-
-  console.log('exporting is done')
 }
