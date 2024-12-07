@@ -1,8 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import { parseHeroesCsv } from '../utilities/parseCsv'
-import Button from '@mui/material/Button'
-import Stack from '@mui/material/Stack'
 import HeroPoolSection from '@/components/HeroPoolSection'
 import Grid from '@mui/material/Grid2'
 

@@ -1,10 +1,10 @@
 import Stack from '@mui/material/Stack'
 
-type Prop = {
+type Props = {
   hero: CompleteHero
 }
 
-const HeroCard = ({ hero }: Prop) => {
+const HeroCard = ({ hero }: Props) => {
   return (
     <Stack
       component='img'
@@ -12,6 +12,13 @@ const HeroCard = ({ hero }: Prop) => {
       src={hero.thumbnail}
       width={60}
       height={80}
+      sx={{
+        transition: '.15s',
+        '&:hover': {
+          transform: 'scale(1.6)',
+          transition: 'transform .15s ease-in-out',
+        }
+      }}
     />
   )
 }
