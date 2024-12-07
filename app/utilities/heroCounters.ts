@@ -1,21 +1,23 @@
 import axiosFandom from '@/app/apis/axiosFandom'
 import queryString from 'query-string'
 
-const extractSections = (content: string): CounterHero => {
-  const sections: CounterHero = {
-    badAgainst: {
-      mainHeroes: [],
-      othersHeroes: []
-    },
-    goodAgainst: {
-      mainHeroes: [],
-      othersHeroes: []
-    },
-    worksWellWith: {
-      mainHeroes: [],
-      othersHeroes: []
-    }
+const initialCounterHero = {
+  badAgainst: {
+    mainHeroes: [],
+    othersHeroes: []
+  },
+  goodAgainst: {
+    mainHeroes: [],
+    othersHeroes: []
+  },
+  worksWellWith: {
+    mainHeroes: [],
+    othersHeroes: []
   }
+}
+
+const extractSections = (content: string): CounterHero => {
+  const sections: CounterHero = { ...initialCounterHero }
 
   // Adjusted regex patterns with stricter grouping for optional "Others" section
   const badAgainstMatch = content.match(/==?\s*Bad against\.\.\.\s*==?\s*([\s\S]*?)(?:===?\s*Others\s*===?\s*([\s\S]*?))?(?===|$)/i)
@@ -76,6 +78,6 @@ export const getCounterHeroes = async (heroName: string): Promise<CounterHero> =
     return extractedSections
   } catch (error) {
     console.error(`Error fetching data for ${heroName}`, error)
-    return { ...initialCounterHero }
+    return initialCounterHero
   }
 }

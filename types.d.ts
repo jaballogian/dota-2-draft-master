@@ -28,13 +28,16 @@ type CounterHero = {
   }
 }
 
-type CompleteHero = DetailHero & CounterHero
+type CompleteHero = DetailHero & {
+  counters: CounterHero
+}
 
-type CsvHero = DetailHero & {
-  bad_against_main_heroes: string[],
-  bad_against_others_heroes: string[],
-  good_against_main_heroes: string[],
-  good_against_others_heroes: string[],
-  works_well_with_main_heroes: string[],
-  works_well_with_others_heroes: string[],
+type CsvHero = Omit<DetailHero, 'role_levels'> & {
+  role_levels: string,
+  bad_against_main_heroes: string,
+  bad_against_others_heroes: string,
+  good_against_main_heroes: string,
+  good_against_others_heroes: string,
+  works_well_with_main_heroes: string,
+  works_well_with_others_heroes: string,
 }
