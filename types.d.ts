@@ -9,6 +9,7 @@ type GeneralHero = {
   primary_attr: number,
   complexity: number,
   thumbnail_vertical: string,
+  thumbnail_horizontal: string
 }
 
 type DetailHero = GeneralHero & {
