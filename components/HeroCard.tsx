@@ -4,6 +4,8 @@ type Props = OnHeroClick & {
   hero: SelectionHero
 }
 
+// TODO: ADD BANNED HERO UI
+
 const HeroCard = ({ 
   hero,
   onLeftClick,
@@ -19,6 +21,7 @@ const HeroCard = ({
         event.preventDefault()
         if (!hero.selectedBy) onRightClick(hero.id, 'opponent')
       }}
+      // WIDTH:HEIGHT = 3:4
       width={60}
       height={80}
       sx={hero.selectedBy ? {

@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { parseHeroesCsv } from '../utilities/parseCsv'
 import HeroPoolSection from '@/components/HeroPoolSection'
 import Grid from '@mui/material/Grid2'
+import SelectedHeroes from '@/components/SelectedHeroes'
+import Stack from '@mui/material/Stack'
 
 const primaryAttributes: PrimaryAttributeOptions[] = [ 0, 1, 2, 3 ]
 
@@ -49,6 +51,22 @@ const App: React.FC = () => {
       container 
       spacing={2}
     >
+      {/* SELECTED HEROES */}
+      <Grid size={12}>
+        <Stack 
+          direction='row' 
+          spacing={2}
+        >
+          {[ 'your', 'opponent' ].map(selectedBy => (
+            <SelectedHeroes
+              key={selectedBy}
+              list={heroes.filter(hero => hero.selectedBy === selectedBy)}
+              selectedBy={selectedBy as SelectionOptions}
+            />
+          ))}
+        </Stack>
+      </Grid>
+
       {/* HERO POOL */}
       {primaryAttributes.map(primaryAttribute  => (
         <Grid 
