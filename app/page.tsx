@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { getCounterHeroes } from './utilities/heroCounters'
 import { getAllGeneralHero, getDetailHero } from '@/app/utilities/heroes'
 import { saveHeroesDataToCsv } from './utilities/jsonToCsv'
-import { parseCsv } from './utilities/parseCsv'
+import { parseHeroesCsv } from './utilities/parseCsv'
 
 const App: React.FC = () => {
   const [ heroes, setHeroes ] = useState<CompleteHero[]>([])
@@ -45,7 +45,7 @@ const App: React.FC = () => {
       try {
         const response = await fetch('/data/heroes.csv')
         const csvText = await response.text()
-        const parsedData = parseCsv(csvText)
+        const parsedData = parseHeroesCsv(csvText)
         console.log(parsedData)
         // setHeroes(parsedData)
       } catch (error) {
