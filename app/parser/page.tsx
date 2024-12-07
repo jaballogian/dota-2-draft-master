@@ -22,7 +22,7 @@ const Parser: React.FC = () => {
 
   //         return {
   //           ...hero,
-  //           thumbnail: `/images/heroes/${hero.name.replace('npc_dota_hero_', '')}_vert.png`,
+  //           thumbnail: `/images/heroes/vertical/${hero.name.replace('npc_dota_hero_', '')}_vert.png`,
   //           attack_capability: detailHero?.attack_capability,
   //           role_levels: detailHero?.role_levels,
   //           counters: counterHeroes
