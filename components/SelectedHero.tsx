@@ -2,7 +2,8 @@ import Stack from '@mui/material/Stack'
 
 type Props = {
   hero: SelectionHero,
-  selectedBy: SelectionOptions
+  selectedBy: SelectionOptions,
+  onRightClick: (id: number) => void
 }
 
 const getClipPath = (selectedBy: SelectionOptions): string => {
@@ -16,7 +17,11 @@ const getClipPath = (selectedBy: SelectionOptions): string => {
   }
 }
 
-const SelectedHero = ({ hero, selectedBy }: Props) => {
+const SelectedHero = ({ 
+  hero, 
+  selectedBy, 
+  onRightClick
+}: Props) => {
   return (
     <Stack
       component='img'
@@ -28,7 +33,10 @@ const SelectedHero = ({ hero, selectedBy }: Props) => {
       sx={{
         clipPath: getClipPath(selectedBy),
         border: 'none !important'
-        // filter: 'drop-shadow(0px 10px 5px rgba(0,0,0,0.1))'
+      }}
+      onContextMenu={event => {
+        event.preventDefault()
+        onRightClick(hero?.id)
       }}
     />
   )

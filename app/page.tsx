@@ -11,7 +11,7 @@ const primaryAttributes: PrimaryAttributeOptions[] = [ 0, 1, 2, 3 ]
 const App: React.FC = () => {
   const [ heroes, setHeroes ] = useState<SelectionHero[]>([])
 
-  const handleClick = (id: number, selectedBy: SelectionOptions) => {
+  const handleHeroOptionClick = (id: number, selectedBy: SelectionOptions) => {
     if (selectedBy === 'your' && heroes.filter(hero => hero.selectedBy === 'your').length === 5) return
     if (selectedBy === 'opponent' && heroes.filter(hero => hero.selectedBy === 'opponent').length === 5) return
     
@@ -19,6 +19,15 @@ const App: React.FC = () => {
       return {
         ...hero,
         selectedBy: hero.id === id ? selectedBy : hero.selectedBy
+      }
+    }))
+  }
+
+  const handleSelectedHeroRightClick = (id: number) => {
+    setHeroes(current => [ ...current ].map(hero => {
+      return {
+        ...hero,
+        selectedBy: hero.id === id ? null : hero.selectedBy
       }
     }))
   }
@@ -62,6 +71,7 @@ const App: React.FC = () => {
               key={selectedBy}
               list={heroes.filter(hero => hero.selectedBy === selectedBy)}
               selectedBy={selectedBy as SelectionOptions}
+              onRightClick={handleSelectedHeroRightClick}
             />
           ))}
         </Stack>
@@ -76,8 +86,8 @@ const App: React.FC = () => {
           <HeroPoolSection
             primaryAttribute={primaryAttribute}
             list={heroes}
-            onLeftClick={handleClick}
-            onRightClick={handleClick}
+            onLeftClick={handleHeroOptionClick}
+            onRightClick={handleHeroOptionClick}
           />
         </Grid>
       ))}

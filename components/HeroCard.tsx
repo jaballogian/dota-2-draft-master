@@ -30,7 +30,7 @@ const HeroCard = ({
         transition: '.15s',
         '&:hover': {
           transform: 'scale(1.6)',
-          transition: 'transform .15s ease-in-out',
+          transition: 'transform .15s ease-in-out'
         }
       }}
     />

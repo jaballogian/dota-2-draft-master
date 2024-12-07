@@ -3,10 +3,15 @@ import SelectedHero from './SelectedHero'
 
 type Props = {
   list: SelectionHero[],
-  selectedBy: SelectionOptions
+  selectedBy: SelectionOptions,
+  onRightClick: (id: number) => void
 }
 
-const SelectedHeroes = ({ list, selectedBy }: Props) => {
+const SelectedHeroes = ({ 
+  list, 
+  selectedBy, 
+  onRightClick
+}: Props) => {
   return (
     <Stack direction='row'>
       {[ 0, 1, 2, 3, 4 ].map(position => (
@@ -14,6 +19,7 @@ const SelectedHeroes = ({ list, selectedBy }: Props) => {
           key={position}
           hero={list[position]}
           selectedBy={selectedBy}
+          onRightClick={onRightClick}
         />
       ))}
     </Stack>
