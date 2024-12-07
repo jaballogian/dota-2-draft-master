@@ -9,7 +9,7 @@ const primaryAttributes: PrimaryAttributeOptions[] = [ 0, 1, 2, 3 ]
 const App: React.FC = () => {
   const [ heroes, setHeroes ] = useState<SelectionHero[]>([])
 
-  const handleClick = (id: number, selectedBy: null | 'your' | 'opponent') => {
+  const handleClick = (id: number, selectedBy: SelectionOptions) => {
     if (selectedBy === 'your' && heroes.filter(hero => hero.selectedBy === 'your').length === 5) return
     if (selectedBy === 'opponent' && heroes.filter(hero => hero.selectedBy === 'opponent').length === 5) return
     
