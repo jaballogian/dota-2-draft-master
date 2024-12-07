@@ -13,7 +13,7 @@ const HeroCard = ({
     <Stack
       component='img'
       alt={hero.name_loc}
-      src={hero.thumbnail}
+      src={hero.thumbnail_vertical}
       onClick={() => !hero.selectedBy && onLeftClick(hero.id, 'your')}
       onContextMenu={event => {
         event.preventDefault()

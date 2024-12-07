@@ -10,7 +10,7 @@ export const parseHeroesCsv = (csvText: string): CompleteHero[] => {
       name_english_loc: values[3],
       primary_attr: Number(values[4]),
       complexity: Number(values[5]),
-      thumbnail: values[6],
+      thumbnail_vertical: values[6],
       attack_capability: Number(values[7]),
       role_levels: values[8] ? values[8].split(',').map(Number) : [],
       counters: {
