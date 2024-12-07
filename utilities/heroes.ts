@@ -1,4 +1,4 @@
-import axiosDota from '@/app/_apis/axiosDota'
+import axiosDota from '@/apis/axiosDota'
 
 // TO DO: USE TRY AND CATCH
 export const getAllGeneralHero = async (): Promise<GeneralHero[]> => {

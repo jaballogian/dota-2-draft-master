@@ -1,9 +1,9 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import { getCounterHeroes } from '../_utilities/heroCounters'
-import { getAllGeneralHero, getDetailHero } from '@/app/_utilities/heroes'
-import { saveHeroesDataToCsv } from '../_utilities/jsonToCsv'
-import { parseHeroesCsv } from '../_utilities/parseCsv'
+import { getCounterHeroes } from '../../utilities/heroCounters'
+import { getAllGeneralHero, getDetailHero } from '@/utilities/heroes'
+import { saveHeroesDataToCsv } from '../../utilities/jsonToCsv'
+import { parseHeroesCsv } from '../../utilities/parseCsv'
 
 const Parser: React.FC = () => {
   const [ heroes, setHeroes ] = useState<CompleteHero[]>([])

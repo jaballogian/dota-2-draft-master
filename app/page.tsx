@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import { parseHeroesCsv } from './_utilities/parseCsv'
+import { parseHeroesCsv } from '../utilities/parseCsv'
 import Button from '@mui/material/Button'
 
 const App: React.FC = () => {
