@@ -4,13 +4,15 @@
 /* NOTE: UNTOUCHED */
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #373737;
+  box-sizing: border-box;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #373737;
     --foreground: #ededed;
+    box-sizing: border-box;
   }
 }
 
@@ -18,4 +20,5 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
 }

@@ -4,6 +4,8 @@ type Props = OnHeroClick & {
   hero: SelectionHero
 }
 
+// TODO: ADD BANNED HERO UI
+
 const HeroCard = ({ 
   hero,
   onLeftClick,
@@ -13,12 +15,13 @@ const HeroCard = ({
     <Stack
       component='img'
       alt={hero.name_loc}
-      src={hero.thumbnail}
+      src={hero.thumbnail_vertical}
       onClick={() => !hero.selectedBy && onLeftClick(hero.id, 'your')}
       onContextMenu={event => {
         event.preventDefault()
-        !hero.selectedBy && onRightClick(hero.id, 'opponent')
+        if (!hero.selectedBy) onRightClick(hero.id, 'opponent')
       }}
+      // WIDTH:HEIGHT = 3:4
       width={60}
       height={80}
       sx={hero.selectedBy ? {
@@ -27,7 +30,7 @@ const HeroCard = ({
         transition: '.15s',
         '&:hover': {
           transform: 'scale(1.6)',
-          transition: 'transform .15s ease-in-out',
+          transition: 'transform .15s ease-in-out'
         }
       }}
     />

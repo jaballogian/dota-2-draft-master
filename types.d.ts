@@ -1,4 +1,5 @@
 type PrimaryAttributeOptions = 0 | 1 | 2 | 3
+type SelectionOptions = null | 'your' | 'opponent' | 'banned'
 
 type GeneralHero = {
   id: number,
@@ -7,7 +8,8 @@ type GeneralHero = {
   name_english_loc: string,
   primary_attr: number,
   complexity: number,
-  thumbnail: string,
+  thumbnail_vertical: string,
+  thumbnail_horizontal: string
 }
 
 type DetailHero = GeneralHero & {
@@ -45,10 +47,10 @@ type CsvHero = Omit<DetailHero, 'role_levels'> & {
 }
 
 type SelectionHero = CompleteHero & {
-  selectedBy: null | 'your' | 'opponent',
+  selectedBy: SelectionOptions
 }
 
 type OnHeroClick = {
-  onLeftClick: (id: number, selectedBy: null | 'your' | 'opponent') => void,
-  onRightClick: (id: number, selectedBy: null | 'your' | 'opponent') => void
+  onLeftClick: (id: number, selectedBy: SelectionOptions) => void,
+  onRightClick: (id: number, selectedBy: SelectionOptions) => void
 }

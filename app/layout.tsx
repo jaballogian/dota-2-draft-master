@@ -5,6 +5,7 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter'
 import { Roboto } from 'next/font/google'
 import { ThemeProvider } from '@mui/material/styles'
 import theme from '../constants/theme'
+import CssBaseline from '@mui/material/CssBaseline'
 
 // NOTE: UNTOUCHED
 const geistSans = localFont({
@@ -41,6 +42,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} ${roboto.variable} antialiased`}>
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
           <ThemeProvider theme={theme}>
+            <CssBaseline/>
             {children}
           </ThemeProvider>
         </AppRouterCacheProvider>
