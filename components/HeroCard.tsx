@@ -1,7 +1,7 @@
 import Stack from '@mui/material/Stack'
 
 type Props = OnHeroClick & {
-  hero: CompleteHero
+  hero: SelectionHero
 }
 
 const HeroCard = ({ 
@@ -14,14 +14,16 @@ const HeroCard = ({
       component='img'
       alt={hero.name_loc}
       src={hero.thumbnail}
-      onClick={() => onLeftClick(hero.id, 'your')}
+      onClick={() => !hero.selectedBy && onLeftClick(hero.id, 'your')}
       onContextMenu={event => {
         event.preventDefault()
-        onRightClick(hero.id, 'opponent')
+        !hero.selectedBy && onRightClick(hero.id, 'opponent')
       }}
       width={60}
       height={80}
-      sx={{
+      sx={hero.selectedBy ? {
+        filter: 'grayscale(100%)'
+      } :{
         transition: '.15s',
         '&:hover': {
           transform: 'scale(1.6)',

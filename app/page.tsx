@@ -10,6 +10,8 @@ const App: React.FC = () => {
   const [ heroes, setHeroes ] = useState<SelectionHero[]>([])
 
   const handleClick = (id: number, selectedBy: null | 'your' | 'opponent') => {
+    if (heroes.filter(hero => hero.selectedBy).length === 10) return
+    
     setHeroes(current => [ ...current ].map(hero => {
       return {
         ...hero,
