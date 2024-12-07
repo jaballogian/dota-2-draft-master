@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import { parseHeroesCsv } from './_utilities/parseCsv'
+import Button from '@mui/material/Button'
 
 const App: React.FC = () => {
   const [ heroes, setHeroes ] = useState<CompleteHero[]>([])
@@ -25,6 +26,7 @@ const App: React.FC = () => {
 
   return (
     <div>
+      <Button variant='contained'>Contained</Button>
       Home
     </div>
   )
