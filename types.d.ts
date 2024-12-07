@@ -1,3 +1,5 @@
+type PrimaryAttributeOptions = 0 | 1 | 2 | 3
+
 type GeneralHero = {
   id: number,
   name: string,

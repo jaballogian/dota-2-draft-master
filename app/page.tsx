@@ -2,6 +2,11 @@
 import React, { useEffect, useState } from 'react'
 import { parseHeroesCsv } from '../utilities/parseCsv'
 import Button from '@mui/material/Button'
+import Stack from '@mui/material/Stack'
+import HeroPoolSection from '@/components/HeroPoolSection'
+import Grid from '@mui/material/Grid2'
+
+const primaryAttributes: PrimaryAttributeOptions[] = [ 0, 1, 2, 3 ]
 
 const App: React.FC = () => {
   const [ heroes, setHeroes ] = useState<CompleteHero[]>([])
@@ -25,10 +30,23 @@ const App: React.FC = () => {
   console.log({ heroes })
 
   return (
-    <div>
-      <Button variant='contained'>Contained</Button>
-      Home
-    </div>
+    <Grid
+      container 
+      spacing={2}
+    >
+      {/* HERO POOL */}
+      {primaryAttributes.map(primaryAttribute  => (
+        <Grid 
+          key={primaryAttribute}
+          size={6}
+        >
+          <HeroPoolSection
+            primaryAttribute={primaryAttribute}
+            list={heroes}
+          />
+        </Grid>
+      ))}
+    </Grid>
   )
 }
 
