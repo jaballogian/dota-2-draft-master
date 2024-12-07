@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from 'react'
 import { getCounterHeroes } from './utilities/heroCounters'
 import { getAllGeneralHero, getDetailHero } from '@/app/utilities/heroes'
-import { jsonToCsv } from './utilities/jsonToCsv'
-import { parseCsv } from './utilities/parseCsv'
+import { saveHeroesDataToCsv } from './utilities/jsonToCsv'
+import { parseHeroesCsv } from './utilities/parseCsv'
 
 const App: React.FC = () => {
   const [ heroes, setHeroes ] = useState<CompleteHero[]>([])
@@ -25,13 +25,13 @@ const App: React.FC = () => {
   //           thumbnail: `/images/heroes/${hero.name.replace('npc_dota_hero_', '')}_vert.png`,
   //           attack_capability: detailHero?.attack_capability,
   //           role_levels: detailHero?.role_levels,
-  //           counter: counterHeroes
+  //           counters: counterHeroes
   //         }
   //       }))
 
   //       if (allHeroes.length > 0) {
   //         setHeroes(allHeroes)
-  //         jsonToCsv(allHeroes)
+  //         saveHeroesDataToCsv(allHeroes)
   //       }
   //     }
   //   }
@@ -45,7 +45,7 @@ const App: React.FC = () => {
       try {
         const response = await fetch('/data/heroes.csv')
         const csvText = await response.text()
-        const parsedData = parseCsv(csvText)
+        const parsedData = parseHeroesCsv(csvText)
         console.log(parsedData)
         // setHeroes(parsedData)
       } catch (error) {
