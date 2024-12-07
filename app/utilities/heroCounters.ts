@@ -1,6 +1,5 @@
 import axiosFandom from '@/app/apis/axiosFandom'
 import queryString from 'query-string'
-import { initialCounterHero } from '../constants/heroes'
 
 const extractSections = (content: string): CounterHero => {
   const sections: CounterHero = {
