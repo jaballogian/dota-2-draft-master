@@ -1,4 +1,4 @@
-import axiosFandom from '@/app/apis/axiosFandom'
+import axiosFandom from '@/app/_apis/axiosFandom'
 import queryString from 'query-string'
 
 const initialCounterHero = {
