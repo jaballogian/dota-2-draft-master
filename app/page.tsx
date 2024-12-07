@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import { parseHeroesCsv } from './utilities/parseCsv'
+import { parseHeroesCsv } from './_utilities/parseCsv'
 
 const App: React.FC = () => {
   const [ heroes, setHeroes ] = useState<CompleteHero[]>([])
