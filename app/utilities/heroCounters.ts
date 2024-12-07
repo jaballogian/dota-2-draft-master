@@ -3,7 +3,20 @@ import queryString from 'query-string'
 import { initialCounterHero } from '../constants/heroes'
 
 const extractSections = (content: string): CounterHero => {
-  const sections: CounterHero = { ...initialCounterHero }
+  const sections: CounterHero = {
+    badAgainst: {
+      mainHeroes: [],
+      othersHeroes: []
+    },
+    goodAgainst: {
+      mainHeroes: [],
+      othersHeroes: []
+    },
+    worksWellWith: {
+      mainHeroes: [],
+      othersHeroes: []
+    }
+  }
 
   // Adjusted regex patterns with stricter grouping for optional "Others" section
   const badAgainstMatch = content.match(/==?\s*Bad against\.\.\.\s*==?\s*([\s\S]*?)(?:===?\s*Others\s*===?\s*([\s\S]*?))?(?===|$)/i)
