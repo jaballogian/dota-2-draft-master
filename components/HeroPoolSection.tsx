@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography'
 
 type Props = OnHeroClick & {
   primaryAttribute: PrimaryAttributeOptions,
-  list: CompleteHero[]
+  list: SelectionHero[]
 }
 
 const getPrimaryAttributeLabel = (number: PrimaryAttributeOptions): string => {
@@ -58,14 +58,17 @@ const HeroPoolSection = ({
         flexWrap='wrap'
       >
         {list.filter(item => item.primary_attr === primaryAttribute)
-          .map(hero => (
-            <HeroCard
-              key={hero.id}
-              hero={hero}
-              onLeftClick={onLeftClick}
-              onRightClick={onRightClick}
-            />
-          ))}
+        .sort((a: SelectionHero, b: SelectionHero) => { 
+          return a.name_loc.localeCompare(b.name_loc)
+        })
+        .map(hero => (
+          <HeroCard
+            key={hero.id}
+            hero={hero}
+            onLeftClick={onLeftClick}
+            onRightClick={onRightClick}
+          />
+        ))}
       </Stack>
     </Stack>
   )
