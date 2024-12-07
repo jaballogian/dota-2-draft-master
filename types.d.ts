@@ -43,3 +43,12 @@ type CsvHero = Omit<DetailHero, 'role_levels'> & {
   works_well_with_main_heroes: string,
   works_well_with_others_heroes: string,
 }
+
+type SelectionHero = CompleteHero & {
+  selectedBy: null | 'your' | 'opponent',
+}
+
+type OnHeroClick = {
+  onLeftClick: (id: number, selectedBy: null | 'your' | 'opponent') => void,
+  onRightClick: (id: number, selectedBy: null | 'your' | 'opponent') => void
+}

@@ -2,7 +2,7 @@ import HeroCard from './HeroCard'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 
-type Props = {
+type Props = OnHeroClick & {
   primaryAttribute: PrimaryAttributeOptions,
   list: CompleteHero[]
 }
@@ -22,7 +22,12 @@ const getPrimaryAttributeLabel = (number: PrimaryAttributeOptions): string => {
   }
 }
 
-const HeroPoolSection = ({ primaryAttribute, list = [] }: Props) => {
+const HeroPoolSection = ({ 
+  primaryAttribute, 
+  list = [], 
+  onLeftClick,
+  onRightClick
+}: Props) => {
   return (
     <Stack spacing={1}>
       {/* HEADER */}
@@ -57,6 +62,8 @@ const HeroPoolSection = ({ primaryAttribute, list = [] }: Props) => {
             <HeroCard
               key={hero.id}
               hero={hero}
+              onLeftClick={onLeftClick}
+              onRightClick={onRightClick}
             />
           ))}
       </Stack>

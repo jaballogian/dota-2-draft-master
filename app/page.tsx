@@ -7,7 +7,16 @@ import Grid from '@mui/material/Grid2'
 const primaryAttributes: PrimaryAttributeOptions[] = [ 0, 1, 2, 3 ]
 
 const App: React.FC = () => {
-  const [ heroes, setHeroes ] = useState<CompleteHero[]>([])
+  const [ heroes, setHeroes ] = useState<SelectionHero[]>([])
+
+  const handleClick = (id: number, selectedBy: null | 'your' | 'opponent') => {
+    setHeroes(current => [ ...current ].map(hero => {
+      return {
+        ...hero,
+        selectedBy: hero.id === id ? selectedBy : hero.selectedBy
+      }
+    }))
+  }
 
   // GET ALL HEROES FROM A CSV FILE
   useEffect(() => {
@@ -16,7 +25,12 @@ const App: React.FC = () => {
         const response = await fetch('/data/heroes.csv')
         const csvText = await response.text()
         const parsedData = parseHeroesCsv(csvText)
-        setHeroes(parsedData)
+        setHeroes(parsedData.map(parsedHero => {
+          return {
+            ...parsedHero,
+            selectedBy: null
+          }
+        }))
       } catch (error) {
         console.error('Error reading CSV:', error)
       }
@@ -41,6 +55,8 @@ const App: React.FC = () => {
           <HeroPoolSection
             primaryAttribute={primaryAttribute}
             list={heroes}
+            onLeftClick={handleClick}
+            onRightClick={handleClick}
           />
         </Grid>
       ))}
