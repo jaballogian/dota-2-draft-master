@@ -58,17 +58,17 @@ const HeroPoolSection = ({
         flexWrap='wrap'
       >
         {list.filter(item => item.primary_attr === primaryAttribute)
-        .sort((a: SelectionHero, b: SelectionHero) => { 
-          return a.name_loc.localeCompare(b.name_loc)
-        })
-        .map(hero => (
-          <HeroCard
-            key={hero.id}
-            hero={hero}
-            onLeftClick={onLeftClick}
-            onRightClick={onRightClick}
-          />
-        ))}
+          .sort((a: SelectionHero, b: SelectionHero) => { 
+            return a.name_loc.localeCompare(b.name_loc)
+          })
+          .map(hero => (
+            <HeroCard
+              key={hero.id}
+              hero={hero}
+              onLeftClick={onLeftClick}
+              onRightClick={onRightClick}
+            />
+          ))}
       </Stack>
     </Stack>
   )

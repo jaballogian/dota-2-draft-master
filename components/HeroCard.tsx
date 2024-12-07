@@ -17,7 +17,7 @@ const HeroCard = ({
       onClick={() => !hero.selectedBy && onLeftClick(hero.id, 'your')}
       onContextMenu={event => {
         event.preventDefault()
-        !hero.selectedBy && onRightClick(hero.id, 'opponent')
+        if (!hero.selectedBy) onRightClick(hero.id, 'opponent')
       }}
       width={60}
       height={80}
