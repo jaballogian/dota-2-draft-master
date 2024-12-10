@@ -1,8 +1,8 @@
-import RadarApex from '@/components/ApexCharts/Radar'
-import RadarEchart from '@/components/Echarts/Radar'
+import RadarApex from '@/app/test/components/ApexCharts/Radar'
+import RadarEchart from '@/app/test/components/Echarts/Radar'
 // import Radar from '@/components/D3/Radar'
-import RadarChart from '@/components/Charts/Radar'
-import RadarD3 from '@/components/D3/Radar2Fix'
+import RadarChart from '@/app/test/components/Charts/Radar'
+import RadarD3 from '@/app/test/components/D3/Radar2Fix'
 // import RadarD3 from '@/components/D3/Radar3'
 
 const Test = () => {
