@@ -9,6 +9,7 @@ const flattenJson = (data: CompleteHero[]): CsvHero[] => {
       complexity: item.complexity,
       thumbnail_vertical: item.thumbnail_vertical,
       thumbnail_horizontal: item.thumbnail_horizontal,
+      icon: item.icon,
       attack_capability: item.attack_capability,
       role_levels: item.role_levels.join(','),
       bad_against_main_heroes: item.counters.badAgainst.mainHeroes.join(','),

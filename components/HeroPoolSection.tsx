@@ -47,7 +47,7 @@ const HeroPoolSection = ({
 
         {/* LABEL */}
         <Typography>
-          {getPrimaryAttributeLabel(primaryAttribute)}
+          {getPrimaryAttributeLabel(primaryAttribute).toLocaleUpperCase()}
         </Typography>
       </Stack>
 
