@@ -1,5 +1,4 @@
 import RadarApex from '@/app/test/components/ApexCharts/Radar'
-import RadarEchart from '@/app/test/components/Echarts/Radar'
 // import Radar from '@/components/D3/Radar'
 import RadarChart from '@/app/test/components/Charts/Radar'
 import RadarD3 from '@/app/test/components/D3/Radar2Fix'
@@ -31,7 +30,6 @@ const Test = () => {
       <h1>This is just a page to test the development of some components</h1>
       {/* <Radar data={data} labels={labels} /> */}
       {/* <RadarApex/> */}
-      <RadarEchart/>
       {/* <RadarChart/> */}
       <RadarD3 data={data.data}/>
     </div>
