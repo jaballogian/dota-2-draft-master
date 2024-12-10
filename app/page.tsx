@@ -5,6 +5,7 @@ import HeroPoolSection from '@/components/HeroPoolSection'
 import Grid from '@mui/material/Grid2'
 import SelectedHeroes from '@/components/SelectedHeroes'
 import Stack from '@mui/material/Stack'
+import RadarChart from '@/sections/Comparison/Radar'
 
 const primaryAttributes: PrimaryAttributeOptions[] = [ 0, 1, 2, 3 ]
 
@@ -66,6 +67,7 @@ const App: React.FC = () => {
           direction='row' 
           spacing={2}
         >
+          {/* TODO: ADD RESET BUTTON IN THE MIDDLE */}
           {[ 'your', 'opponent' ].map(selectedBy => (
             <SelectedHeroes
               key={selectedBy}
@@ -91,6 +93,18 @@ const App: React.FC = () => {
           />
         </Grid>
       ))}
+
+      {/* ATTRIBUTES COMPARISON: RADAR CHART */}
+      <Grid size={6}>
+        <RadarChart
+          type='attributes'
+          heroes={heroes}
+        />
+        <RadarChart
+          type='roles'
+          heroes={heroes}
+        />
+      </Grid>
     </Grid>
   )
 }
