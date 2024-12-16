@@ -1,21 +1,9 @@
-import RadarChart from '@/components/Charts/Radar'
-
-type Props = {
-  type: TypeOptions,
-  heroes: SelectionHero[]
-}
-type TypeOptions = 'attributes' | 'roles'
-
-const getLabels = (type: TypeOptions): { name: string }[] => {
+export const getChartLabels = (type: ChartTypeOptions): string[] => {
   switch (type) {
   case 'attributes':
-    return [ 'Strength', 'Agility', 'Intelligence', 'Universal', 'Meele', 'Range' ].map(label => {
-      return { name: label }
-    })
+    return [ 'Strength', 'Agility', 'Intelligence', 'Universal', 'Meele', 'Range' ]
   case 'roles':
-    return [ 'Carry', 'Support', 'Nuker', 'Disabler', 'Jungler', 'Durable', 'Escape', 'Pusher', 'Initiator' ].map(label => {
-      return { name: label }
-    })
+    return [ 'Carry', 'Support', 'Nuker', 'Disabler', 'Jungler', 'Durable', 'Escape', 'Pusher', 'Initiator' ]
     // TODO: REMOVE JUNGLER BECAUSE NO JUNGLER HEROES
     // .filter((_, key) => key !== 4)
   default:
@@ -27,7 +15,7 @@ const getRolePowerByRoleIndex = (selectedHeroes: SelectionHero[], roleIndex: num
   return selectedHeroes.map(hero => hero.role_levels[roleIndex]).reduce((a, b) => a + b, 0)
 }
 
-const getData = (team: SelectionOptions, type: TypeOptions, heroes: SelectionHero[]): number[] => {
+export const getChartData = (team: SelectionOptions, type: ChartTypeOptions, heroes: SelectionHero[]): number[] => {
   const selectedHeroes = heroes.filter(hero => hero.selectedBy === team)
   
   if (type === 'attributes') return [
@@ -42,15 +30,3 @@ const getData = (team: SelectionOptions, type: TypeOptions, heroes: SelectionHer
     // .filter((_, key) => key !== 4)
   else return []
 }
-
-const Radar = ({ type, heroes }: Props) => {
-  return (
-    <RadarChart
-      labels={getLabels(type)}
-      yourData={getData('your', type, heroes)}
-      opponentData={getData('opponent', type, heroes)}
-    />
-  )
-}
-
-export default Radar

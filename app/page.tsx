@@ -5,7 +5,9 @@ import HeroPoolSection from '@/components/HeroPoolSection'
 import Grid from '@mui/material/Grid2'
 import SelectedHeroes from '@/components/SelectedHeroes'
 import Stack from '@mui/material/Stack'
-import RadarChart from '@/sections/Comparison/Radar'
+import BarChart from '@/components/Charts/Bar'
+import RadarChart from '@/components/Charts/Radar'
+import { getChartLabels, getChartData } from '@/utilities/charts'
 
 const primaryAttributes: PrimaryAttributeOptions[] = [ 0, 1, 2, 3 ]
 
@@ -94,16 +96,35 @@ const App: React.FC = () => {
         </Grid>
       ))}
 
-      {/* ATTRIBUTES COMPARISON: RADAR CHART */}
+      {/* ATTRIBUTES COMPARISON */}
       <Grid size={12}>
         <Stack direction='row'>
+          {/* RADAR CHARTS */}
           <RadarChart
-            type='attributes'
-            heroes={heroes}
+            labels={getChartLabels('attributes')}
+            yourData={getChartData('your', 'attributes', heroes)}
+            opponentData={getChartData('opponent', 'attributes', heroes)}
           />
           <RadarChart
-            type='roles'
-            heroes={heroes}
+            labels={getChartLabels('roles')}
+            yourData={getChartData('your', 'roles', heroes)}
+            opponentData={getChartData('opponent', 'roles', heroes)}
+          />
+        </Stack>
+      </Grid>
+
+      <Grid size={12}>
+        <Stack direction='row'>
+          {/* BAR CHART */}
+          <BarChart
+            labels={getChartLabels('attributes')}
+            yourData={getChartData('your', 'attributes', heroes).map(number => -(number))}
+            opponentData={getChartData('opponent', 'attributes', heroes)}
+          />
+          <BarChart
+            labels={getChartLabels('roles')}
+            yourData={getChartData('your', 'roles', heroes).map(number => -(number))}
+            opponentData={getChartData('opponent', 'roles', heroes)}
           />
         </Stack>
       </Grid>
