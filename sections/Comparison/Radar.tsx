@@ -16,6 +16,8 @@ const getLabels = (type: TypeOptions): { name: string }[] => {
     return [ 'Carry', 'Support', 'Nuker', 'Disabler', 'Jungler', 'Durable', 'Escape', 'Pusher', 'Initiator' ].map(label => {
       return { name: label }
     })
+    // TODO: REMOVE JUNGLER BECAUSE NO JUNGLER HEROES
+    // .filter((_, key) => key !== 4)
   default:
     return []
   }
@@ -36,6 +38,8 @@ const getData = (team: SelectionOptions, type: TypeOptions, heroes: SelectionHer
   ]
   else if (type === 'roles') return Array.from(Array(9).keys())
     .map(key => getRolePowerByRoleIndex(selectedHeroes, key))
+    // TODO: REMOVE JUNGLER BECAUSE NO JUNGLER HEROES
+    // .filter((_, key) => key !== 4)
   else return []
 }
 

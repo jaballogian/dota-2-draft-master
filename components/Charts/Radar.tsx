@@ -76,7 +76,12 @@ const Radar = ({ labels, yourData, opponentData }: Props) => {
     ]
   }
 
-  return <ReactECharts option={options} style={{ height: 300 }} />
+  return (
+    <ReactECharts 
+      option={options} 
+      style={{ height: 300, width: '30%' }} 
+    />
+  )
 }
 
 export default Radar

@@ -95,15 +95,17 @@ const App: React.FC = () => {
       ))}
 
       {/* ATTRIBUTES COMPARISON: RADAR CHART */}
-      <Grid size={6}>
-        <RadarChart
-          type='attributes'
-          heroes={heroes}
-        />
-        <RadarChart
-          type='roles'
-          heroes={heroes}
-        />
+      <Grid size={12}>
+        <Stack direction='row'>
+          <RadarChart
+            type='attributes'
+            heroes={heroes}
+          />
+          <RadarChart
+            type='roles'
+            heroes={heroes}
+          />
+        </Stack>
       </Grid>
     </Grid>
   )
