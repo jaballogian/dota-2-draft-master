@@ -6,6 +6,7 @@ import Grid from '@mui/material/Grid2'
 import SelectedHeroes from '@/components/SelectedHeroes'
 import Stack from '@mui/material/Stack'
 import RadarChart from '@/sections/Comparison/Radar'
+import BarChart from '@/sections/Comparison/Bar'
 
 const primaryAttributes: PrimaryAttributeOptions[] = [ 0, 1, 2, 3 ]
 
@@ -94,14 +95,29 @@ const App: React.FC = () => {
         </Grid>
       ))}
 
-      {/* ATTRIBUTES COMPARISON: RADAR CHART */}
+      {/* ATTRIBUTES COMPARISON */}
       <Grid size={12}>
         <Stack direction='row'>
+          {/* RADAR CHART */}
           <RadarChart
             type='attributes'
             heroes={heroes}
           />
           <RadarChart
+            type='roles'
+            heroes={heroes}
+          />
+        </Stack>
+      </Grid>
+
+      <Grid size={12}>
+        <Stack direction='row'>
+          {/* BAR CHART */}
+          <BarChart
+            type='attributes'
+            heroes={heroes}
+          />
+          <BarChart
             type='roles'
             heroes={heroes}
           />
