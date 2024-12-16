@@ -6,7 +6,7 @@ import { values } from '@/constants/values'
 // TODO: REPLACE WITH CUSTOM STACKED BAR CHART AFTER RELEASE
 const Bar = ({ labels, yourData, opponentData }: ChartOptions) => {
   const options: EChartsOption = {
-    color: [ 'lightblue', 'aquamarine' ],
+    color: [ 'linen', 'silver' ],
     xAxis: [
       {
         type: 'value',
