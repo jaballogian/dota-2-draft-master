@@ -6,7 +6,7 @@ import { values } from '@/constants/values'
 // TODO: REPLACE WITH CUSTOM STACKED BAR CHART AFTER RELEASE
 const Bar = ({ labels, yourData, opponentData }: ChartOptions) => {
   const options: EChartsOption = {
-    color: [ 'linen', 'silver' ],
+    color: [ 'green', 'red' ],
     xAxis: [
       {
         type: 'value',
@@ -35,7 +35,7 @@ const Bar = ({ labels, yourData, opponentData }: ChartOptions) => {
         label: {
           show: true,
           position: 'left',
-          formatter: function (value) {
+          formatter: value => {
             if (value?.dataIndex !== -1) {
               const yourValue: number = -(yourData[value?.dataIndex])
               const opponentValue: number = opponentData[value?.dataIndex]
@@ -46,6 +46,17 @@ const Bar = ({ labels, yourData, opponentData }: ChartOptions) => {
           },
           rich: values.chart.rich
         },
+        itemStyle: {
+          color: params => {
+            if (params?.dataIndex !== -1) {
+              const yourValue: number = -(yourData[params?.dataIndex])
+              const opponentValue: number = opponentData[params?.dataIndex]
+  
+              const yourStyle: 'green' | 'grey' = (yourValue >= opponentValue && yourValue !== 0) ? 'green' : 'grey'
+              return yourStyle
+            }
+          }
+        },
         data: yourData
       },
       {
@@ -55,7 +66,7 @@ const Bar = ({ labels, yourData, opponentData }: ChartOptions) => {
         label: {
           show: true,
           position: 'right',
-          formatter: function (value) {
+          formatter: value => {
             if (value?.dataIndex !== -1) {
               const yourValue: number = -(yourData[value?.dataIndex])
               const opponentValue: number = opponentData[value?.dataIndex]
@@ -65,6 +76,17 @@ const Bar = ({ labels, yourData, opponentData }: ChartOptions) => {
             }
           },
           rich: values.chart.rich
+        },
+        itemStyle: {
+          color: params => {
+            if (params?.dataIndex !== -1) {
+              const yourValue: number = -(yourData[params?.dataIndex])
+              const opponentValue: number = opponentData[params?.dataIndex]
+  
+              const opponentStyle: 'red' | 'grey' = (opponentValue >= yourValue && opponentValue !== 0) ? 'red' : 'grey'
+              return opponentStyle
+            }
+          }
         },
         data: opponentData
       }
