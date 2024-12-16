@@ -1,10 +1,6 @@
 // CHART
 
 type ChartTypeOptions = 'attributes' | 'roles'
-type ChartSection = {
-  type: ChartTypeOptions,
-  heroes: SelectionHero[]
-}
 
 type ChartOptions = {
   labels: string[], 
