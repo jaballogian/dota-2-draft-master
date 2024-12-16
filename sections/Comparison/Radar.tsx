@@ -6,16 +6,12 @@ type Props = {
 }
 type TypeOptions = 'attributes' | 'roles'
 
-const getLabels = (type: TypeOptions): { name: string }[] => {
+const getLabels = (type: TypeOptions): string[] => {
   switch (type) {
   case 'attributes':
-    return [ 'Strength', 'Agility', 'Intelligence', 'Universal', 'Meele', 'Range' ].map(label => {
-      return { name: label }
-    })
+    return [ 'Strength', 'Agility', 'Intelligence', 'Universal', 'Meele', 'Range' ]
   case 'roles':
-    return [ 'Carry', 'Support', 'Nuker', 'Disabler', 'Jungler', 'Durable', 'Escape', 'Pusher', 'Initiator' ].map(label => {
-      return { name: label }
-    })
+    return [ 'Carry', 'Support', 'Nuker', 'Disabler', 'Jungler', 'Durable', 'Escape', 'Pusher', 'Initiator' ]
     // TODO: REMOVE JUNGLER BECAUSE NO JUNGLER HEROES
     // .filter((_, key) => key !== 4)
   default:

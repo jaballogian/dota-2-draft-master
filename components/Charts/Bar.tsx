@@ -3,17 +3,8 @@ import ReactECharts from 'echarts-for-react'
 import type { EChartsOption } from 'echarts'
 import { values } from '@/constants/values'
 
-type Props = {
-  labels: string[], 
-  yourData: number[], 
-  opponentData: number[]
-}
-
-type YourStyleLabel = 'yourFilled' | 'yourTransparent'
-type OpponentStyleLabel = 'opponentFilled' | 'opponentTransparent'
-
 // TODO: REPLACE WITH CUSTOM STACKED BAR CHART AFTER RELEASE
-const Bar = ({ labels, yourData, opponentData }: Props) => {
+const Bar = ({ labels, yourData, opponentData }: ChartOptions) => {
   const options: EChartsOption = {
     color: [ 'lightblue', 'aquamarine' ],
     xAxis: [
@@ -49,7 +40,7 @@ const Bar = ({ labels, yourData, opponentData }: Props) => {
               const yourValue: number = -(yourData[value?.dataIndex])
               const opponentValue: number = opponentData[value?.dataIndex]
   
-              const yourStyle: YourStyleLabel = (yourValue >= opponentValue && yourValue !== 0) ? 'yourFilled' : 'yourTransparent'
+              const yourStyle: ChartYourStyleLabel = (yourValue >= opponentValue && yourValue !== 0) ? 'yourFilled' : 'yourTransparent'
               return `{${yourStyle}|${yourValue}}`
             }
           },
@@ -69,7 +60,7 @@ const Bar = ({ labels, yourData, opponentData }: Props) => {
               const yourValue: number = -(yourData[value?.dataIndex])
               const opponentValue: number = opponentData[value?.dataIndex]
   
-              const opponentStyle: OpponentStyleLabel = (opponentValue >= yourValue && opponentValue !== 0) ? 'opponentFilled' : 'opponentTransparent'  
+              const opponentStyle: ChartOpponentStyleLabel = (opponentValue >= yourValue && opponentValue !== 0) ? 'opponentFilled' : 'opponentTransparent'  
               return `{${opponentStyle}|${opponentValue}}`
             }
           },

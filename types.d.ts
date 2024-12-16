@@ -1,3 +1,22 @@
+// CHART
+
+type ChartTypeOptions = 'attributes' | 'roles'
+type ChartSection = {
+  type: ChartTypeOptions,
+  heroes: SelectionHero[]
+}
+
+type ChartOptions = {
+  labels: string[], 
+  yourData: number[], 
+  opponentData: number[]
+}
+
+type ChartYourStyleLabel = 'yourFilled' | 'yourTransparent'
+type ChartOpponentStyleLabel = 'opponentFilled' | 'opponentTransparent'
+
+// HERO
+
 type PrimaryAttributeOptions = 0 | 1 | 2 | 3
 type SelectionOptions = null | 'your' | 'opponent' | 'banned'
 
