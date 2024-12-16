@@ -23,6 +23,7 @@ const Parser: React.FC = () => {
             ...hero,
             thumbnail_vertical: `/images/heroes/vertical/${hero.name.replace('npc_dota_hero_', '')}_vert.png`,
             thumbnail_horizontal: `/images/heroes/horizontal/${hero.name.replace('npc_dota_hero_', '')}.png`,
+            icon: `/images/heroes/icons/${hero.name}_png.png`,
             attack_capability: detailHero?.attack_capability,
             role_levels: detailHero?.role_levels,
             counters: counterHeroes

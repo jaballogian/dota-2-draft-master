@@ -12,20 +12,21 @@ export const parseHeroesCsv = (csvText: string): CompleteHero[] => {
       complexity: Number(values[5]),
       thumbnail_vertical: values[6],
       thumbnail_horizontal: values[7],
-      attack_capability: Number(values[8]),
-      role_levels: values[9] ? values[9].split(',').map(Number) : [],
+      icon: values[8],
+      attack_capability: Number(values[9]),
+      role_levels: values[10] ? values[10].split(',').map(Number) : [],
       counters: {
         badAgainst: {
-          mainHeroes: values[10] ? values[10].split(',') : [],
-          othersHeroes: values[11] ? values[11].split(',') : []
+          mainHeroes: values[11] ? values[11].split(',') : [],
+          othersHeroes: values[12] ? values[12].split(',') : []
         },
         goodAgainst: {
-          mainHeroes: values[12] ? values[12].split(',') : [],
-          othersHeroes: values[13] ? values[13].split(',') : []
+          mainHeroes: values[13] ? values[13].split(',') : [],
+          othersHeroes: values[14] ? values[14].split(',') : []
         },
         worksWellWith: {
-          mainHeroes: values[14] ? values[14].split(',') : [],
-          othersHeroes: values[15] ? values[15].split(',') : []
+          mainHeroes: values[15] ? values[15].split(',') : [],
+          othersHeroes: values[16] ? values[16].split(',') : []
         }
       }
     }
