@@ -5,7 +5,7 @@ import HeroPoolSection from '@/components/HeroPoolSection'
 import Grid from '@mui/material/Grid2'
 import SelectedHeroes from '@/components/SelectedHeroes'
 import Stack from '@mui/material/Stack'
-import BarChart from '@/sections/Comparison/Bar'
+import BarChart from '@/components/Charts/Bar'
 import RadarChart from '@/components/Charts/Radar'
 import { getChartLabels, getChartData } from '@/utilities/charts'
 
@@ -117,12 +117,14 @@ const App: React.FC = () => {
         <Stack direction='row'>
           {/* BAR CHART */}
           <BarChart
-            type='attributes'
-            heroes={heroes}
+            labels={getChartLabels('attributes')}
+            yourData={getChartData('your', 'attributes', heroes).map(number => -(number))}
+            opponentData={getChartData('opponent', 'attributes', heroes)}
           />
           <BarChart
-            type='roles'
-            heroes={heroes}
+            labels={getChartLabels('roles')}
+            yourData={getChartData('your', 'roles', heroes).map(number => -(number))}
+            opponentData={getChartData('opponent', 'roles', heroes)}
           />
         </Stack>
       </Grid>
