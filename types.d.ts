@@ -11,6 +11,14 @@ type ChartOptions = {
 type ChartYourStyleLabel = 'yourFilled' | 'yourTransparent'
 type ChartOpponentStyleLabel = 'opponentFilled' | 'opponentTransparent'
 
+// FILTER
+
+type FilterIcons = { 
+  label: string, 
+  iconUrl: string,
+  isSelected: boolean
+}
+
 // HERO
 
 type PrimaryAttributeOptions = 0 | 1 | 2 | 3

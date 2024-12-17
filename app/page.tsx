@@ -9,11 +9,40 @@ import BarChart from '@/components/Charts/Bar'
 import RadarChart from '@/components/Charts/Radar'
 import { getChartLabels, getChartData } from '@/utilities/charts'
 import Filters from '@/components/Filters'
+import { typeIcons, attackTypeIcons, tagIcons } from '@/constants/initialData'
 
 const primaryAttributes: PrimaryAttributeOptions[] = [ 0, 1, 2, 3 ]
 
 const App: React.FC = () => {
+  const [ filters, setFilters ] = useState<FilterIcons[]>([
+    ...typeIcons, ...attackTypeIcons, ...tagIcons
+  ])
   const [ heroes, setHeroes ] = useState<SelectionHero[]>([])
+
+  const handleFilterIconClick = (label: string) => {
+    setFilters(current => {
+      return current.map(currentFilter => {
+        let isSelected = currentFilter.isSelected
+  
+        if (currentFilter.label === label) {
+          isSelected = !currentFilter.isSelected
+        }
+  
+        if (label === 'Melee' && currentFilter.label === 'Range' && isSelected) {
+          isSelected = false
+        }
+  
+        if (label === 'Range' && currentFilter.label === 'Melee' && isSelected) {
+          isSelected = false
+        }
+  
+        return {
+          ...currentFilter,
+          isSelected
+        }
+      })
+    })
+  }  
 
   const handleHeroOptionClick = (id: number, selectedBy: SelectionOptions) => {
     if (selectedBy === 'your' && heroes.filter(hero => hero.selectedBy === 'your').length === 5) return
@@ -57,7 +86,8 @@ const App: React.FC = () => {
     parseData()
   }, [])
 
-  console.log({ heroes })
+  // console.log({ filters })
+  // console.log({ heroes })
 
   return (
     <Grid
@@ -69,6 +99,7 @@ const App: React.FC = () => {
         <Stack 
           direction='row' 
           spacing={2}
+          alignItems='center'
         >
           {/* TODO: ADD RESET BUTTON IN THE MIDDLE */}
           {[ 'your', 'opponent' ].map(selectedBy => (
@@ -80,7 +111,10 @@ const App: React.FC = () => {
             />
           ))}
 
-          <Filters/>
+          <Filters
+            filters={filters}
+            onIconClick={handleFilterIconClick}
+          />
         </Stack>
       </Grid>
 
