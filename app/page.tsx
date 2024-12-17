@@ -8,6 +8,7 @@ import Stack from '@mui/material/Stack'
 import BarChart from '@/components/Charts/Bar'
 import RadarChart from '@/components/Charts/Radar'
 import { getChartLabels, getChartData } from '@/utilities/charts'
+import Filters from '@/components/Filters'
 
 const primaryAttributes: PrimaryAttributeOptions[] = [ 0, 1, 2, 3 ]
 
@@ -78,6 +79,8 @@ const App: React.FC = () => {
               onRightClick={handleSelectedHeroRightClick}
             />
           ))}
+
+          <Filters/>
         </Stack>
       </Grid>
 
