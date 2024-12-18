@@ -13,6 +13,54 @@ import { typeIcons, attackTypeIcons, tagIcons } from '@/constants/initialData'
 
 const primaryAttributes: PrimaryAttributeOptions[] = [ 0, 1, 2, 3 ]
 
+const updateFilters = (filters: FilterIcons[], label: string): FilterIcons[] => {
+  const newFilters: FilterIcons[] = [ ...filters ].map(filter => {
+    let isSelected = filter.isSelected
+
+    if (filter.label === label) isSelected = !filter.isSelected
+    if (label === 'Melee' && filter.label === 'Range' && isSelected) isSelected = false
+    if (label === 'Range' && filter.label === 'Melee' && isSelected) isSelected = false
+
+    return {
+      ...filter,
+      isSelected
+    }
+  })
+
+  return newFilters
+}
+
+const updateHeroesByFilters = (heroes: SelectionHero[], newFilters: FilterIcons[]): SelectionHero[] => {
+  const newHeroes: SelectionHero[] = heroes.map(hero => {
+    const selectedFilters = newFilters.filter(filter => filter.isSelected)
+    let isFiltered = selectedFilters.length === 0
+
+    if (selectedFilters.some(filter => filter.label === 'Melee' && hero.attack_capability === 1)) {
+      isFiltered = true
+    }
+
+    if (selectedFilters.some(filter => filter.label === 'Range' && hero.attack_capability === 2)) {
+      isFiltered = true
+    }
+
+    const roleFilters = selectedFilters.filter(filter => filter.index !== undefined)
+
+    if (roleFilters.length > 0) {
+      const roleMatch = roleFilters.every(filter => hero.role_levels[filter.index!] > 0)
+      if (roleMatch) {
+        isFiltered = true
+      }
+    }
+
+    return {
+      ...hero,
+      isFiltered
+    }
+  })
+
+  return newHeroes
+}
+
 const App: React.FC = () => {
   const [ filters, setFilters ] = useState<FilterIcons[]>([
     ...typeIcons, ...attackTypeIcons, ...tagIcons
@@ -20,28 +68,10 @@ const App: React.FC = () => {
   const [ heroes, setHeroes ] = useState<SelectionHero[]>([])
 
   const handleFilterIconClick = (label: string) => {
-    setFilters(current => {
-      return current.map(currentFilter => {
-        let isSelected = currentFilter.isSelected
-  
-        if (currentFilter.label === label) {
-          isSelected = !currentFilter.isSelected
-        }
-  
-        if (label === 'Melee' && currentFilter.label === 'Range' && isSelected) {
-          isSelected = false
-        }
-  
-        if (label === 'Range' && currentFilter.label === 'Melee' && isSelected) {
-          isSelected = false
-        }
-  
-        return {
-          ...currentFilter,
-          isSelected
-        }
-      })
-    })
+    const newFilters: FilterIcons[] = updateFilters([ ...filters ], label)
+    setFilters(newFilters)
+
+    setHeroes(updateHeroesByFilters([ ...heroes ], newFilters))
   }  
 
   const handleHeroOptionClick = (id: number, selectedBy: SelectionOptions) => {
@@ -75,7 +105,8 @@ const App: React.FC = () => {
         setHeroes(parsedData.map(parsedHero => {
           return {
             ...parsedHero,
-            selectedBy: null
+            selectedBy: null,
+            isFiltered: true
           }
         }))
       } catch (error) {
@@ -87,7 +118,7 @@ const App: React.FC = () => {
   }, [])
 
   // console.log({ filters })
-  // console.log({ heroes })
+  console.log({ heroes })
 
   return (
     <Grid

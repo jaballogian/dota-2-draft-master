@@ -16,7 +16,8 @@ type ChartOpponentStyleLabel = 'opponentFilled' | 'opponentTransparent'
 type FilterIcons = { 
   label: string, 
   iconUrl: string,
-  isSelected: boolean
+  isSelected: boolean,
+  index: number | undefined
 }
 
 // HERO
@@ -70,8 +71,10 @@ type CsvHero = Omit<DetailHero, 'role_levels'> & {
   works_well_with_others_heroes: string,
 }
 
+// TODO: UPDATE ALL VARIABLES USING THIS TYPE
 type SelectionHero = CompleteHero & {
-  selectedBy: SelectionOptions
+  selectedBy: SelectionOptions,
+  isFiltered: boolean
 }
 
 type OnHeroClick = {
